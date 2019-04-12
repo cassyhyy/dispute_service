@@ -8,12 +8,6 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
  * 接口关系：
  * ElasticsearchRepository --> ElasticsearchCrudRepository --> PagingAndSortingRepository --> CrudRepository
  */
-public interface BookRepository extends ElasticsearchRepository<BookBean, String> {
-
-    //Optional<BookBean> findById(String id);
-
-    Page<BookBean> findByAuthor(String author, Pageable pageable);
-
-    Page<BookBean> findByTitle(String title, Pageable pageable);
-
+public interface DisputeRepository extends ElasticsearchRepository<DisputeBean, String> {
+    Page<DisputeBean> findByDisputeName(String disputeName, Pageable pageable);
 }
