@@ -1,98 +1,31 @@
+package com.srtp.dispute.domain.es;
+
 /**
- * 文书类，存放相关信息（与搭建索引有重要联系）
+ * 录入案件-入参
  */
-package com.srtp.dispute.model;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
-
-@Document(indexName = "dispute_index", type = "dispute_texts")
-public class DisputeBean {
-    @Id
-    private Long id; //编号
-    @Field(type = FieldType.Keyword)
+public class CaseInputDTO {
     private String disputeNO;
-    @Field(type = FieldType.Text, analyzer = "ik_max_word", store = true)
     private String district; //区域
-    @Field(type = FieldType.Text, analyzer = "ik_max_word", store = true)
     private String disputeName; //纠纷名称
-    @Field(type = FieldType.Keyword)
     private String evaluation; //案情评估
-    @Field(type = FieldType.Keyword)
     private String fierceDegree; //激烈程度
-    @Field(type = FieldType.Keyword)
-    private String disputePerson; //涉及人数
-    @Field(type = FieldType.Keyword)
+    private String disputePerson;
     private String compensation; //涉及金额
-    @Field(type = FieldType.Keyword)
     private String disputeDegree; //纠纷等级
-    @Field(type = FieldType.Keyword)
     private String acceptDate; //受理时间
-    @Field(type = FieldType.Keyword)
     private String disputeOrigin; //案件来源
-    @Field(type = FieldType.Keyword)
     private String disputeType; //纠纷类型
-    @Field(type = FieldType.Keyword)
     private String disputeArea; //纠纷区域
-    @Field(type = FieldType.Text, analyzer = "ik_max_word", store = true)
     private String disputeLocation; //发生地点
-    @Field(type = FieldType.Text, analyzer = "ik_max_word", store = true)
     private String briefInfo; //简要情况
-    @Field(type = FieldType.Keyword)
     private String disputeResolution; //调解结果
-    @Field(type = FieldType.Keyword)
     private String resolutionDate; //调解成功时间
-    @Field(type = FieldType.Keyword)
     private String institution; //责任单位
-    @Field(type = FieldType.Keyword)
     private String staffName; //调解员
-    @Field(type = FieldType.Text, analyzer = "ik_max_word", store = true)
     private String agreement; //达成协议内容
-    @Field(type = FieldType.Text, analyzer = "whitespace", store = true)
     private String disputeTag; //标签
-    @Field(type = FieldType.Keyword)
     private String personName;//当事人姓名
-    @Field(type = FieldType.Keyword)
     private String hospitalName;//医院名称
-
-    public DisputeBean() {
-    }
-
-    public DisputeBean(Long id, String disputeNO, String district, String disputeName, String evaluation, String fierceDegree, String disputePerson, String compensation, String disputeDegree, String acceptDate, String disputeOrigin, String disputeType, String disputeArea, String disputeLocation, String briefInfo, String disputeResolution, String resolutionDate, String institution, String staffName, String agreement, String disputeTag, String personName, String hospitalName) {
-        this.id = id;
-        this.disputeNO = disputeNO;
-        this.district = district;
-        this.disputeName = disputeName;
-        this.evaluation = evaluation;
-        this.fierceDegree = fierceDegree;
-        this.disputePerson = disputePerson;
-        this.compensation = compensation;
-        this.disputeDegree = disputeDegree;
-        this.acceptDate = acceptDate;
-        this.disputeOrigin = disputeOrigin;
-        this.disputeType = disputeType;
-        this.disputeArea = disputeArea;
-        this.disputeLocation = disputeLocation;
-        this.briefInfo = briefInfo;
-        this.disputeResolution = disputeResolution;
-        this.resolutionDate = resolutionDate;
-        this.institution = institution;
-        this.staffName = staffName;
-        this.agreement = agreement;
-        this.disputeTag = disputeTag;
-        this.personName = personName;
-        this.hospitalName = hospitalName;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getDisputeNO() {
         return disputeNO;

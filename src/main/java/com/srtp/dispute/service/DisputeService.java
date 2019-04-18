@@ -21,5 +21,9 @@ public class DisputeService{
     public void insertList(List<DisputeBean> list) {
         disputeRepository.saveAll(list);
     }
+
+    public void insert(DisputeBean item) {
+        disputeRepository.save(item);
+    }
 }
 

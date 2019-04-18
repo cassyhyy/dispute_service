@@ -36,7 +36,7 @@ public class CaseReader {
         InputStream instream = null;
 
         try {
-            instream = this.getClass().getResourceAsStream("/case/6月人民调解（医疗纠纷）.xls");
+            instream = this.getClass().getResourceAsStream("/case/2月人民调解（医疗纠纷）.xls");
 //            instream = new FileInputStream("/case/6月人民调解（医疗纠纷）.xls");
             readwb = Workbook.getWorkbook(instream);
         }catch (IOException e) {
@@ -61,11 +61,8 @@ public class CaseReader {
 
         //获取指定单元格的对象引用
         for (int i = 1; i < rsRows; i++) {
-            DisputeBean d = new DisputeBean("0", "", "", "", "", "0", "0", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-
-            //设置id
             long id = idGenerator.nextId();
-            d.setId(id);
+            DisputeBean d = new DisputeBean(id,"0", "", "", "", "", "0", "0", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             //设置编号
             cell = readsheet.getCell(j, i);
@@ -206,6 +203,18 @@ public class CaseReader {
             if (s == null || s.isEmpty())
                 s = "";
             d.setBriefInfo(s);
+            //依据简要情况生成关键词
+            if(!s.equals("")) {
+                List<String> keyword = textProcessor.getKeyword(s, 10);
+                if(keyword.size() > 0) {
+                    String tag = "";
+                    for (int index = 0; index < keyword.size(); index++) {
+                        tag += keyword.get(index);
+                        tag += " "; //空格分割
+                    }
+                    d.setDisputeTag(tag.substring(0, tag.length() - 1));
+                }
+            }
             s = null;
             j++;
 
@@ -254,7 +263,7 @@ public class CaseReader {
             s = null;
 
             //设置标签
-            d.setDisputeTag("暂无");
+//            d.setDisputeTag("暂无");
 
             //j重新置0
             j = 0;
@@ -276,7 +285,6 @@ public class CaseReader {
             }
             documentList.add(d);
         }
-//        System.out.println(documentList.get(0).getAbstract());
         return documentList;
     }
 }
